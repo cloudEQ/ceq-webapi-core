@@ -1,4 +1,4 @@
-name: WebApi .NetCore Build
+name: Build WebApi ASP.NET Core
 on:
   push:
     branches:
