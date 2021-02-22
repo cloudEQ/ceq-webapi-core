@@ -4,7 +4,7 @@
 .vs
 
 #output
-/WebAPI/obj
+/ceq-webapi-core/obj
 
-/WebAPI/bin
+/ceq-webapi-core/bin
 
