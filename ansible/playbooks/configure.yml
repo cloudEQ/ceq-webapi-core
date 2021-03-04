@@ -10,7 +10,6 @@
       name: dotnet-aspnetcoremodule-v2
       state: present
       version: 15.0.21023
-      source: http://internal/odata/repo
 
   - name: remove directory
     win_file:
