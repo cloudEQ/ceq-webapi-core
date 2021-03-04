@@ -21,13 +21,11 @@
       win_file: 
         state: directory
         path: C:\inetpub\wwwroot\webapi
-      # become: false
 
     - name: copy app.zip file
       win_copy:
         src: ../../release.zip
         dest: C:\inetpub\wwwroot\webapi
-      # become: false
     
     - name: Unzip app folder
       win_unzip:
