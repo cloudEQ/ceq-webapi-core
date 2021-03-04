@@ -29,4 +29,10 @@ jobs:
         run: |
           mkdir release
           dotnet publish --configuration Release --output ./release
+          zip -r release.zip release/
+
+      - name: Run ansible playbook
+        run: |
+          cd ansible
+          ansible-playbook playbooks/configure.yml 
       

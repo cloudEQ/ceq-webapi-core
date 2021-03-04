@@ -5,17 +5,39 @@
     - variables.yml
   tasks:
 
-  - name: install nginx
+  - name: Ensure dotnet-aspnetcoremodule-v2 installed
     win_chocolatey:
-     name: nginx
-     state: present
-     version: 1.19.7
-     package_params: '"/installLocation:C:\nginx /port:8081"'
-  - name: copy the custom nginx config file
-    win_template:
-      src: ../templates/nginx.conf.j2
-      dest: C:\nginx\nginx-1.19.7\conf\nginx.conf
-  - name: restart nginx
-    win_service:
-     name: nginx
-     state: restarted
+      name: dotnet-aspnetcoremodule-v2
+      state: present
+      version: 15.0.21023
+      source: http://internal/odata/repo
+
+    - name: remove directory
+      win_file:
+        state: absent
+        path: C:\inetpub\wwwroot\webapi
+    
+    - name: create directory
+      win_file: 
+        state: directory
+        path: C:\inetpub\wwwroot\webapi
+      # become: false
+
+    - name: copy app.zip file
+      win_copy:
+        src: ../../release.zip
+        dest: C:\inetpub\wwwroot\webapi
+      # become: false
+    
+    - name: Unzip app folder
+      win_unzip:
+        src: C:\inetpub\wwwroot\webapi\release.zip
+        dest: C:\inetpub\wwwroot\webapi
+
+    - name: Add ACME webapplication on IIS.
+      win_iis_website:
+        name: webapi-core
+        state: started
+        port: 8081
+        physical_path: C:\inetpub\wwwroot\webapi\release
+  
