@@ -12,30 +12,30 @@
       version: 15.0.21023
       source: http://internal/odata/repo
 
-    - name: remove directory
-      win_file:
-        state: absent
-        path: C:\inetpub\wwwroot\webapi
-    
-    - name: create directory
-      win_file: 
-        state: directory
-        path: C:\inetpub\wwwroot\webapi
+  - name: remove directory
+    win_file:
+      state: absent
+      path: C:\inetpub\wwwroot\webapi
+  
+  - name: create directory
+    win_file: 
+      state: directory
+      path: C:\inetpub\wwwroot\webapi
 
-    - name: copy app.zip file
-      win_copy:
-        src: ../../release.zip
-        dest: C:\inetpub\wwwroot\webapi
-    
-    - name: Unzip app folder
-      win_unzip:
-        src: C:\inetpub\wwwroot\webapi\release.zip
-        dest: C:\inetpub\wwwroot\webapi
+  - name: copy app.zip file
+    win_copy:
+      src: ../../release.zip
+      dest: C:\inetpub\wwwroot\webapi
+  
+  - name: Unzip app folder
+    win_unzip:
+      src: C:\inetpub\wwwroot\webapi\release.zip
+      dest: C:\inetpub\wwwroot\webapi
 
-    - name: Add ACME webapplication on IIS.
-      win_iis_website:
-        name: webapi-core
-        state: started
-        port: 8081
-        physical_path: C:\inetpub\wwwroot\webapi\release
+  - name: Add ACME webapplication on IIS.
+    win_iis_website:
+      name: webapi-core
+      state: started
+      port: 8081
+      physical_path: C:\inetpub\wwwroot\webapi\release
   
