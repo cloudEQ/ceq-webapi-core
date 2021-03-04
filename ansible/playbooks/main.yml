@@ -1,0 +1,6 @@
+---
+- name: install nginx for web app
+  import_playbook: nginx.yml
+
+- name: deploy code to web server
+  import_playbook: deploy.yml

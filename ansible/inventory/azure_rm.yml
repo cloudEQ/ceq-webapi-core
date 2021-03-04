@@ -1,0 +1,14 @@
+plugin: azure_rm
+
+include_vm_resource_groups:
+#- ceqteqmx1-ansible-rg
+- azure-sharedsrvc-eastus-dev-rg
+include_vmss_resource_groups:
+- azure-sharedsrvc-eastus-dev-rg
+
+auth_source: auto
+
+keyed_groups:
+# places each host in a group named 'tag_(tag name)_(tag value)' for each tag on a VM.
+- prefix: tag
+  key: tags

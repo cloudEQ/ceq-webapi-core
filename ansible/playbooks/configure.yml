@@ -1,0 +1,21 @@
+---
+- hosts: "{{ dynamic_Hosts_Variable }}"
+  gather_facts: False
+  vars_files:
+    - variables.yml
+  tasks:
+
+  - name: install nginx
+    win_chocolatey:
+     name: nginx
+     state: present
+     version: 1.19.7
+     package_params: '"/installLocation:C:\nginx /port:8081"'
+  - name: copy the custom nginx config file
+    win_template:
+      src: ../templates/nginx.conf.j2
+      dest: C:\nginx\nginx-1.19.7\conf\nginx.conf
+  - name: restart nginx
+    win_service:
+     name: nginx
+     state: restarted
