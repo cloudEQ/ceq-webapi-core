@@ -10,16 +10,16 @@
       name: dotnet-sdk
       state: present
       version: 5.0.103
-      
-  - name: Ensure dotnet-aspnetcoremodule-v2 installed
-    win_chocolatey:
-      name: dotnet-aspnetcoremodule-v2
-      state: present
-      version: 15.0.21023
 
   - name: Ensure dotnet-5.0-windowshosting installed
     win_chocolatey:
       name: dotnet-5.0-windowshosting
       state: present
       version: 5.0.3
+
+  - name: Ensure dotnet-aspnetcoremodule-v2 installed
+    win_chocolatey:
+      name: dotnet-aspnetcoremodule-v2
+      state: present
+      version: 15.0.21023
   
