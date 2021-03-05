@@ -22,11 +22,4 @@
       name: dotnet-sdk
       state: present
       version: 5.0.103
-
-  - name: Add app on IIS.
-    win_iis_website:
-      name: webapi-core
-      state: started
-      port: 8081
-      physical_path: C:\inetpub\wwwroot\webapi\release
   

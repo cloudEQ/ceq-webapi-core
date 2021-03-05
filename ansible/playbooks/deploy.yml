@@ -24,3 +24,10 @@
     win_unzip:
       src: C:\inetpub\wwwroot\webapi\release.zip
       dest: C:\inetpub\wwwroot\webapi
+  
+  - name: Add app on IIS.
+    win_iis_website:
+      name: webapi-core
+      state: started
+      port: 8081
+      physical_path: C:\inetpub\wwwroot\webapi\release
