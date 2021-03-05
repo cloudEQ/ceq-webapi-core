@@ -1,6 +1,6 @@
 ---
-- name: install nginx for web app
-  import_playbook: nginx.yml
+- name: confingure dotnet environment and IIS website
+  import_playbook: configure.yml
 
-- name: deploy code to web server
+- name: copy and deploy code to servers
   import_playbook: deploy.yml

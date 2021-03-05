@@ -3,33 +3,25 @@
   gather_facts: False
   vars_files:
     - variables.yml
+  
   tasks:
-
   - name: Ensure dotnet-aspnetcoremodule-v2 installed
     win_chocolatey:
       name: dotnet-aspnetcoremodule-v2
       state: present
       version: 15.0.21023
 
-  - name: remove directory
-    win_file:
-      state: absent
-      path: C:\inetpub\wwwroot\webapi
+  - name: Ensure dotnet-5.0-windowshosting installed
+    win_chocolatey:
+      name: dotnet-5.0-windowshosting
+      state: present
+      version: 5.0.3
   
-  - name: create directory
-    win_file: 
-      state: directory
-      path: C:\inetpub\wwwroot\webapi
-
-  - name: copy app.zip file
-    win_copy:
-      src: ../../release.zip
-      dest: C:\inetpub\wwwroot\webapi
-  
-  - name: Unzip app folder
-    win_unzip:
-      src: C:\inetpub\wwwroot\webapi\release.zip
-      dest: C:\inetpub\wwwroot\webapi
+  - name: Ensure dotnetcore-sdk installed
+    win_chocolatey:
+      name: dotnetcore-sdk
+      state: present
+      version: 5.0.103
 
   - name: Add ACME webapplication on IIS.
     win_iis_website:

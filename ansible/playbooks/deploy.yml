@@ -1,32 +1,26 @@
 ---
 - hosts: "{{ dynamic_Hosts_Variable }}"
-  gather_facts: False 
-  # remote_user: "{{ server_user }}" # user used to connect to AWS servers.
+  gather_facts: False
   vars_files:
     - variables.yml
-  # become: true
-  # become_method: sudo
-  # become_user: root
-  tasks:
-    - name: remove directory
-      win_file:
-        state: absent
-        path: C:\html\build
-    
-    - name: create directory
-      win_file: 
-        state: directory
-        path: C:\html
-      # become: false
 
-    - name: copy app.zip file
-      win_copy:
-        src: ../../app.zip
-        dest: C:\html
-      # become: false
-    
-    - name: Unzip app folder
-      win_unzip:
-        src: C:\html\app.zip
-        dest: C:\html
-      # become: false
+  tasks:
+  - name: remove directory
+    win_file:
+      state: absent
+      path: C:\inetpub\wwwroot\webapi
+  
+  - name: create directory
+    win_file: 
+      state: directory
+      path: C:\inetpub\wwwroot\webapi
+
+  - name: copy app.zip file
+    win_copy:
+      src: ../../release.zip
+      dest: C:\inetpub\wwwroot\webapi
+  
+  - name: Unzip app folder
+    win_unzip:
+      src: C:\inetpub\wwwroot\webapi\release.zip
+      dest: C:\inetpub\wwwroot\webapi
