@@ -17,13 +17,13 @@
       state: present
       version: 5.0.3
   
-  - name: Ensure dotnetcore-sdk installed
+  - name: Ensure dotnet-sdk installed
     win_chocolatey:
-      name: dotnetcore-sdk
+      name: dotnet-sdk
       state: present
       version: 5.0.103
 
-  - name: Add ACME webapplication on IIS.
+  - name: Add app on IIS.
     win_iis_website:
       name: webapi-core
       state: started
