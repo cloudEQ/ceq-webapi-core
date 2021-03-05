@@ -34,5 +34,5 @@ jobs:
       - name: Run ansible playbook
         run: |
           cd ansible
-          ansible-playbook playbooks/configure.yml 
+          ansible-playbook playbooks/main.yml 
       

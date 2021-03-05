@@ -1,3 +1,3 @@
-dynamic_Hosts_Variable: "tag_Category_AppServers"
+dynamic_Hosts_Variable: "tag_Category_WebServers"
 #Note: need to find out how to work with windows path
 # app_dir: "C:\html"
