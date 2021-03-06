@@ -25,10 +25,10 @@ jobs:
         with:
           fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
 
-      # - name: Install SonarCloud
-      #   if: steps.cache-sonar-scanner.outputs.cache-hit != 'true'
-      #   run: |
-      #     dotnet tool install --global dotnet-sonarscanner
+      - name: Install SonarCloud
+        if: steps.cache-sonar-scanner.outputs.cache-hit != 'true'
+        run: |
+          dotnet tool install --global dotnet-sonarscanner
           
       - name: Build and Analyze
         env:
@@ -36,8 +36,12 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: |
           dotnet-sonarscanner begin /k:"cloudEQ_ceq-webapi-core" /o:"cloudeq" /d:sonar.login="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io"
-          dotnet build
+          dotnet build -p:Version=1.0.1
           dotnet-sonarscanner end /d:sonar.login="${{ secrets.SONAR_TOKEN }}"
+
+      - name:
+        run: |
+          nuget push ceq-webapi-core/bin/Debug/*.nupkg -Source Artifactory
 
       # - name: Restore and Build project
       #   run: |
