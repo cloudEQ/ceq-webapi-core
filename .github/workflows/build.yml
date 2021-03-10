@@ -1,4 +1,4 @@
-name: Build WebApi ASP.NET Core
+name: Build And Deploy WebApi ASP.NET Core
 on:
   push:
     branches:
@@ -7,7 +7,7 @@ on:
     types: [opened, synchronize, reopened]
 jobs:
   build:
-    name: Build
+    name: Build & Deploy
     runs-on: self-hosted
     env:
       AZURE_CLIENT_ID: ${{secrets.AZURE_CLIENT_ID}}
@@ -31,7 +31,7 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: |
           dotnet-sonarscanner begin /k:"cloudEQ_ceq-webapi-core" /o:"cloudeq" /d:sonar.login="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io"
-          dotnet build -p:Version=1.0.4
+          dotnet build -p:Version=1.0.5
           dotnet-sonarscanner end /d:sonar.login="${{ secrets.SONAR_TOKEN }}"
 
       - name: Push pkg to jFrog
