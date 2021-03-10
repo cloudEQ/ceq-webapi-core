@@ -9,6 +9,7 @@
     win_file:
       state: absent
       path: C:\inetpub\wwwroot\webapi
+    ignore_errors: yes
   
   - name: create directory
     win_file: 
