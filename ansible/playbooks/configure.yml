@@ -20,8 +20,7 @@
   - name: Ensure dotnet-aspnetcoremodule-v2 installed
     win_chocolatey:
       name: dotnet-aspnetcoremodule-v2
-      state: present
-      version: 15.0.2102
+      state: latest
   
   - name: Download the New Relic Agent installer
     win_get_url:
