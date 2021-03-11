@@ -1,0 +1,34 @@
+---
+- hosts: "{{ dynamic_Hosts_Variable }}"
+  gather_facts: False
+  vars_files:
+    - variables.yml
+
+  tasks:
+  - name: remove directory
+    win_file:
+      state: absent
+      path: C:\inetpub\wwwroot\webapi
+    ignore_errors: yes
+  
+  - name: create directory
+    win_file: 
+      state: directory
+      path: C:\inetpub\wwwroot\webapi
+
+  - name: copy app.zip file
+    win_copy:
+      src: ../../release.zip
+      dest: C:\inetpub\wwwroot\webapi
+  
+  - name: Unzip app folder
+    win_unzip:
+      src: C:\inetpub\wwwroot\webapi\release.zip
+      dest: C:\inetpub\wwwroot\webapi
+  
+  - name: Add app on IIS.
+    win_iis_website:
+      name: webapi-core
+      state: started
+      port: 8081
+      physical_path: C:\inetpub\wwwroot\webapi\release

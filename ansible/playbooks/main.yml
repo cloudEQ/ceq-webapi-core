@@ -1,0 +1,6 @@
+---
+- name: confingure dotnet environment and IIS website
+  import_playbook: configure.yml
+
+- name: copy and deploy code to servers
+  import_playbook: deploy.yml

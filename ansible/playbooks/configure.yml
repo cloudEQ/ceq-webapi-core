@@ -1,0 +1,32 @@
+---
+- hosts: "{{ dynamic_Hosts_Variable }}"
+  gather_facts: False
+  vars_files:
+    - variables.yml
+  
+  tasks:
+  - name: Ensure dotnet-sdk installed
+    win_chocolatey:
+      name: dotnet-sdk
+      state: present
+      version: 5.0.103
+
+  - name: Ensure dotnet-5.0-windowshosting installed
+    win_chocolatey:
+      name: dotnet-5.0-windowshosting
+      state: present
+      version: 5.0.3
+
+  - name: Ensure dotnet-aspnetcoremodule-v2 installed
+    win_chocolatey:
+      name: dotnet-aspnetcoremodule-v2
+      state: latest
+  
+  - name: Download the New Relic Agent installer
+    win_get_url:
+      url: 'https://download.newrelic.com/dot_net_agent/latest_release/NewRelicDotNetAgent_x64.msi'
+      dest: 'C:\NewRelicDotNetAgent_x64.msi'
+
+  - name: Install New Relic Agent
+    win_command: msiexec.exe /i C:\NewRelicDotNetAgent_x64.msi /qb NR_LICENSE_KEY=eb585b8e4c43a6e05a7447075629922b5b1aNRAL INSTALLLEVEL=1
+  

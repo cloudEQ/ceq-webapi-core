@@ -70,7 +70,7 @@ namespace ceq_webapi_ms.Controllers
                 }
             }
 
-            return "Added Successfully";
+            return "Added Successfully!";
         }
 
 
@@ -97,7 +97,7 @@ namespace ceq_webapi_ms.Controllers
                 }
             }
 
-            return "Updated Successfully";
+            return "Updated Successfully!";
         }
 
 
@@ -123,7 +123,7 @@ namespace ceq_webapi_ms.Controllers
                 }
             }
 
-            return "Deleted Successfully";
+            return "Deleted Successfully!";
         }
 
     }
