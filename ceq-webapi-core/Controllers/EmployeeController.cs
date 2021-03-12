@@ -1,6 +1,7 @@
 ﻿using ceq_webapi_core.Model;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
+using NewRelic.Api.Agent;
 using System;
 using System.Data;
 using System.Data.SqlClient;
@@ -20,7 +21,8 @@ namespace ceq_webapi_ms.Controllers
         }
 
 
-        [HttpGet]
+        [HttpGet]  
+        [Trace]
         public JsonResult GetEmployee()
         {
             DataTable table = new DataTable();
