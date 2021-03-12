@@ -20,11 +20,11 @@
       name: dotnet-aspnetcoremodule-v2
       state: latest
   
-  # - name: Download the New Relic Agent installer
-  #   win_get_url:
-  #     url: 'https://download.newrelic.com/dot_net_agent/latest_release/NewRelicDotNetAgent_x64.msi'
-  #     dest: 'C:\NewRelicDotNetAgent_x64.msi'
+  - name: Download the New Relic Agent installer
+    win_get_url:
+      url: 'https://download.newrelic.com/dot_net_agent/latest_release/NewRelicDotNetAgent_x64.msi'
+      dest: 'C:\NewRelicDotNetAgent_x64.msi'
 
-  # - name: Install New Relic Agent
-  #   win_command: msiexec.exe /i C:\NewRelicDotNetAgent_x64.msi /qb NR_LICENSE_KEY=eb585b8e4c43a6e05a7447075629922b5b1aNRAL INSTALLLEVEL=1
+  - name: Install New Relic Agent
+    win_command: msiexec.exe /i C:\NewRelicDotNetAgent_x64.msi /qb NR_LICENSE_KEY=eb585b8e4c43a6e05a7447075629922b5b1aNRAL INSTALLLEVEL=1
   
